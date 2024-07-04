@@ -1,0 +1,51 @@
+<div class="container-lg">
+  <div class="header-container text-center mb-3">
+    <h1>Show Me <span>What</span> You Got</h1>
+    <div class="container">
+      <%= form_with url: planets_path, method: :get, class: "d-flex mt-3" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control search-bar",
+              placeholder: "What are you looking for...?"
+          %>
+        <%= submit_tag "Search", name: "", class: "btn btn-flat" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="cards">
+    <% @planets.each do |planet| %>
+      <% if planet.planet_img.attached? %>
+        <div class="card-trip">
+        <a href="<%= planet_path(planet) %>">
+          <%= cl_image_tag planet.planet_img.key %>
+        <% end %>
+        <div class="card-trip-infos">
+          <div>
+            <div>
+              <h1><%= planet.name %></h1>
+              <% if planet.reviews.any? %>
+              <% rating = planet.reviews.average(:rating)%>
+              <h3><span><%= rating.round(1) %></span> from <span><%= planet.reviews.count %></span> reviews</h3>
+              <% else %>
+              <h3>Not yet rated</h3>
+              <% end %>
+            </div>
+            <p>
+              <br>Galaxy - <%= planet.location %>
+              <br><%= planet.distance %> away
+            </p>
+            </div>
+            <h2 class="card-trip-pricing"><span>$<%= planet.price_per_night %> </span>per night</h2>
+          </div>
+          </a>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="text-center p-3 my-3">
+    <%= link_to "Back", root_path, class: "btn btn-flat" %>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="container mb-4">
+  <div class="card-trip-show">
+    <%= image_tag @planet.planet_img %>
+      <div class="row">
+        <div class="col-6">
+          <div class="container text-center p-5">
+          <h1><%=@planet.name%></h1>
+          <p>Star cluster: <%= @planet.details %></p>
+          <p>Galaxy: <%=@planet.location%></p>
+          <%if @average_rating != nil %>
+            <% average_rating_floor = @average_rating.to_i %>
+            <% average_rating_decimal = @average_rating - average_rating_floor %>
+
+            <% 5.times do |index| %>
+              <% if index < average_rating_floor %>
+                <i class="fas fa-star" style="color: #FFD43B;"></i>
+              <% elsif index == average_rating_floor && average_rating_decimal > 0 %>
+                <i class="fas fa-star-half" style="color: #FFD43B;"></i>
+              <% else %>
+                <i class="far fa-star" style="color: white;"></i>
+              <% end %>
+            <% end %>
+          <% end %>
+            <% unless @average_rating.nil? %>
+            <% rating = @average_rating %>
+            <p>Rated: <span><%= rating.round(1) %></span> from <span><%= @planet.reviews.count %></span> reviews</p>
+            <% else %>
+              <p>Not yet rated</p>
+            <% end %>
+          <h2 class="card-trip-pricing-show">
+            <br><span>$<%=@planet.price_per_night%></span> per night</h2>
+          </div>
+        </div>
+        <div class="col-6" data-controller="insert-in-list">
+          <div data-controller="toggle" class="mt-5">
+            <div id="bookings" data-insert-in-list-target="items">
+              <%= render "shared/form", planet: @planet, booking: @booking %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <hr>
+        <div class="container w-75">
+          <h1 class="text-center my-3">Planet <span>Reviews</span></h1>
+          <div class="cards mb-2">
+            <% @planet.reviews.each do |review| %>
+              <div class="card-trip">
+                <a href="<%= bookings_path(review.booking) %>">
+                  <div class="card-trip-infos">
+                    <div>
+                      <% average_rating_floor = review.rating.to_i %>
+                      <% average_rating_decimal = review.rating - average_rating_floor %>
+                      <% count = 0 %>
+                      <% 5.times do %>
+                        <% if count < average_rating_floor  %>
+                          <i class="fa fa-star" style="color: #FFD43B;"></i>
+                        <% elsif count == average_rating_floor && average_rating_decimal > 0 %>
+                          <i class="fas fa-star-half" style="color: #FFD43B;"></i>
+                        <% else %>
+                          <i class="fa-regular fa-star" style="color: white;"></i>
+                        <% end %>
+                        <% count += 1%>
+                      <% end %>
+                        <br><p class="mt-3"><%= review.content %></p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center mb-3">
+        <%=link_to "Back", planets_path, class: "btn btn-flat my-2" %>
+      </div>
+    </div>
+  </div>
+</div>

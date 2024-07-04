@@ -1,0 +1,13 @@
+// Import page-specific CSS files here.
+@import "home";
+@import "show";
+
+.header-container {
+  background-color:  white;
+  border-radius: 25px;
+
+  h1 {
+    color: rgb(39, 39, 39);
+    font-size: 64px;
+  }
+}

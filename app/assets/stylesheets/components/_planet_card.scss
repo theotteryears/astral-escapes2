@@ -1,0 +1,88 @@
+.card-trip {
+  overflow: hidden;
+  height: auto;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 25px;
+}
+
+.card-trip:hover {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 20px rgba(35,139,236,0.6);
+  border-radius: 25px;
+}
+
+.card-trip:active {
+  overflow: hidden;
+  background: white;
+  border-radius: 25px;
+  opacity: 0.6;
+  box-shadow: 0 0 20px rgba(35,139,236,0.6);
+}
+
+.card-trip img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-trip h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-trip h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-trip h3 {
+  color: rgb(39, 39, 39);
+  font-size: 16px;
+}
+
+.card-trip p {
+  font-size: 24px;
+  opacity: .7;
+  margin: 0;
+}
+
+.card-trip-infos p {
+  font-size: 24px;
+  opacity: .7;
+  margin: 0;
+}
+
+
+.card-trip .card-trip-infos {
+  font-size: 18px;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.confirmed {
+  color: $AE-blue;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.unconfirmed {
+  color: $AE-red;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.completed {
+  color: $AE-black;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}

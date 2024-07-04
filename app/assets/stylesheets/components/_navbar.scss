@@ -1,0 +1,19 @@
+.navbar-astral-escapes {
+  height: 55px;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  font-family: "Unica One", "Helvetica", "sans-serif";
+  font-size: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-astral-escapes .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-astral-escapes .navbar-brand img {
+  width: 50px;
+}

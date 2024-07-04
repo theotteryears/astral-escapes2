@@ -1,0 +1,24 @@
+.btn-flat-dashboard {
+  position: relative;
+  color: rgb(39,39,39);
+  border: 1px solid $AE-black;
+  background: rgb(255, 255, 255);
+  transition: background 0.3s ease;
+  font-family: "Unica One", "Helvetica", "sans-serif";
+  font-size: 14px;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+  &:hover {
+    opacity: 0.8;
+    color: rgb(39,39,39);
+    border: 1px solid $AE-black;
+  }
+  &:active {
+    top: 2px;
+    left: 1px;
+    box-shadow: none;
+    opacity: 0.8;
+    color: rgb(39,39,39);
+    border: 1px solid $AE-black;
+  }
+}

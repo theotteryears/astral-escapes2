@@ -1,0 +1,52 @@
+<div class="container">
+  <h1 class="text-center mb-4">Sign Up</h1>
+  <div class="row">
+    <div class="col-6 px-lg-5">
+      <p>Embark on an odyssey beyond your wildest dreams with Astral Escapes – your passport to the stars and beyond! Are you ready to unlock the mysteries of the cosmos and experience the adventure of a lifetime?</p>
+
+      <p>Signing up to Astral Escapes opens the door to a universe of possibilities. Picture yourself browsing a vast array of celestial destinations, each offering its own unique blend of wonder and excitement. From tranquil moons to vibrant alien worlds, our platform invites you to explore the extraordinary and make your interstellar dreams a reality.</p>
+
+      <p>But Astral Escapes is more than just a booking platform – it's a community of fellow travelers and explorers united by a shared passion for discovery. Connect with like-minded adventurers, share tales of your cosmic escapades, and embark on journeys that will leave you breathless.</p>
+
+      <p>With our user-friendly interface and dedicated support team, planning your celestial getaway has never been easier. Whether you're a seasoned spacefarer or venturing beyond the stars for the first time, we're here to guide you every step of the way.</p>
+
+      <p>Don't delay! Join us on a journey to the far reaches of the cosmos and let Astral Escapes ignite your sense of wonder!</p>
+    </div>
+    <div class="col-6 px-lg-5">
+
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :first_name,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "first_name" }%>
+        <%= f.input :last_name,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "last_name" }%>
+        <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" }%>
+        <%= f.input :password,
+                    required: true,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: { autocomplete: "new-password" } %>
+        <%= f.input :password_confirmation,
+                    required: true,
+                    input_html: { autocomplete: "new-password" } %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Sign up", class: "btn btn-flat" %>
+      </div>
+    <% end %>
+    <div>
+      <%= render "devise/shared/links"%>
+    </div>
+  </div>
+</div>
+
+</div>

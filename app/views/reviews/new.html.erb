@@ -1,0 +1,21 @@
+<div class="container">
+  <h1 class="text-center mb-4">Add your review</h1>
+  <div class="row">
+    <div class="col-6 px-lg-5">
+      <p>Thank you for sharing your cosmic journey with us! Your review is like a shining star in the vast expanse of space, illuminating the way for future adventurers who seek to explore the wonders of the universe.</p>
+
+      <p>At Astral Escapes, we value your feedback as a guiding light, helping us to continuously improve and enhance the experiences we offer. Your words paint a picture of your interstellar adventure, inspiring others to embark on their own odyssey among the stars.</p>
+
+      <p>As you reflect on your cosmic escapade, know that your review not only shapes the future of our platform but also enriches the lives of fellow travelers who dream of exploring the cosmos.</p>
+
+      <p>So, from the depths of space to the depths of our gratitude, thank you for leaving your mark on Astral Escapes. Your review is a testament to the magic of the universe and the boundless spirit of exploration that unites us all.</p>
+    </div>
+    <div class="col-6">
+      <%= simple_form_for [@booking, @review] do |f| %>
+        <%= f.input :content %>
+        <%= f.input :rating %>
+        <%= f.submit "Add", class: "btn btn-flat" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+  <h1 class="text-center mb-4">Add your planet</h1>
+  <div class="row">
+    <div class="col-6 px-lg-5">
+      <p>Are you a planetary owner seeking to share the wonders of your celestial oasis with eager spacefarers? Look no further than Astral Escapes – your premier platform for showcasing the splendors of your unique corner of the cosmos.</p>
+
+      <p>By listing your planet on Astral Escapes, you open the gates to a universe of opportunity. Imagine introducing intrepid explorers to the breathtaking vistas, otherworldly landscapes, and cosmic phenomena that make your planet truly one-of-a-kind.</p>
+
+      <p>Our platform provides the perfect showcase for your celestial gem, attracting adventurers from across the galaxy with its user-friendly interface and captivating descriptions. Whether your planet boasts majestic mountain ranges, shimmering seas, or ancient ruins steeped in mystery, Astral Escapes ensures that its allure shines brightly for all to see.</p>
+
+      <p>With our dedicated team of experts guiding visitors through their interstellar journey, you can rest assured that your guests will receive top-notch service and support. From providing insider tips to ensuring a seamless booking process, we're committed to making every traveler's experience unforgettable.</p>
+
+      <p>So why keep your planet's wonders hidden from the universe? Join Astral Escapes today and share the magic of your celestial realm with explorers from near and far. List your planet now and embark on a journey to showcase the marvels of space to eager adventurers around the galaxy!</p>
+    </div>
+    <div class="col-6">
+      <%= simple_form_for @planet do |f| %>
+        <%= f.input :planet_img,  as: :file %>
+        <%= f.input :name %>
+        <%= f.input :details %>
+        <%= f.input :location %>
+        <%= f.input :distance %>
+        <%= f.input :price_per_night %>
+        <%= f.submit "Add", class: "btn btn-flat" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<div class="container-lg">
+  <div class="header-container text-center mb-3">
+    <h1>My <span>Bookings</span></h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="cards">
+    <% @bookings.each do |booking| %>
+      <% if booking.planet.planet_img.attached? %>
+        <div class="card-trip">
+          <a href="<%= planet_path(booking.planet) %>">
+          <%= cl_image_tag booking.planet.planet_img.key %>
+        <% end %>
+        <div class="card-trip-infos">
+          <div>
+            <h1><%= booking.planet.name %></h1>
+              <br><p><%= booking.start_date.strftime("%b %d, %Y") %> - <%= booking.end_date.strftime("%b %d, %Y") %></p>
+              <p><%= number_night = booking.end_date.jd - booking.start_date.jd %> nights</p>
+              <br><h2>TOTAL $<%= number_night * booking.planet.price_per_night %></h2>
+              <h2>
+              <span class="<%= booking.status == 'Unconfirmed' ? 'unconfirmed' : 'confirmed' %>"><%= booking.status %></span>
+              </h2>
+            </div>
+          </div>
+
+          <div class="container text-center mb-3">
+            <%= link_to "Add review", new_booking_review_path(booking), class: "btn btn-flat-dashboard mt-3 mb-2" %>
+            <%= link_to "Delete", booking_path(booking),
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                class: "btn btn-flat-dashboard mt-3 mb-2"
+            %>
+          </div>
+          </a>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="header-container text-center mt-4">
+    <h1>My <span>Planets</span></h1>
+  </div>
+
+<div class="container">
+  <div class="cards">
+    <% @my_planet_bookings.each do |booking| %>
+      <% if booking.planet.planet_img.attached? %>
+        <div class="card-trip">
+          <a href="<%= planet_path(booking.planet) %>">
+          <%= cl_image_tag booking.planet.planet_img.key %>
+        <% end %>
+        <div class="card-trip-infos">
+          <div>
+            <h1><%= booking.planet.name %></h1>
+              <br><p><%= booking.start_date.strftime("%b %d, %Y") %> - <%= booking.end_date.strftime("%b %d, %Y") %></p>
+              <p><%= number_night = booking.end_date.jd - booking.start_date.jd %> nights</p>
+              <br><h2>TOTAL $<%= number_night * booking.planet.price_per_night %></h2>
+              <h2>
+              </span>
+              </h2>
+            </div>
+          </div>
+
+          <div class="container text-center mb-3">
+              <%= link_to "Confirm", confirm_booking_path(booking), class: "btn btn-flat-dashboard mt-3 mb-2", data: {turbo_method: :patch}%>
+              <%= link_to "Decline", decline_booking_path(booking), class: "btn btn-flat-dashboard mt-3 mb-2", data: {turbo_method: :patch}%>
+          </div>
+          </a>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="header-container text-center mt-4">
+    <h1>My <span>Reviews</span></h1>
+  </div>
+
+  <div class="container">
+    <div class="cards mt-3">
+      <% @reviews.each do |review| %>
+          <div class="card-trip">
+            <a href="<%= planet_path(review.booking.planet) %>">
+            <div class="card-trip-infos">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h1><%= review.booking.planet.name %></h1>
+                    <% review.rating.times do %>
+                      <i class="fa fa-star" style="color: #FFD43B;"></i>
+                    <% end %>
+                    <% (5 - review.rating).times do %>
+                      <i class="fa fa-star-o" style="color: #000000;"></i>
+                    <% end %>
+                    <p class="mt-3"><%= review.content %></p>
+                    <div class="button-container-review">
+                      <%= link_to 'Delete', review_path(review), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-flat-dashboard mt-3 mb-2" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="text-center p-3 my-3">
+      <%= link_to "Back", planets_path, class: "btn btn-flat" %>
+    </div>
+  </div>
+</div>
