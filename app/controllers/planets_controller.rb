@@ -4,13 +4,32 @@ class PlanetsController < ApplicationController
 
 
   def index
-    planets = Planet.all
-    @planets = planets.order('name ASC')
-    if params[:query].present?
-      sql_subquery = "name ILIKE :query OR distance ILIKE :query OR location ILIKE :query OR details ILIKE :query"
-      @planets = Planet.where(sql_subquery, query: "%#{params[:query]}%")
+  planets = Planet.all.order('name ASC')
+
+  if params[:query].present?
+    term = "%#{params[:query].downcase}%"
+
+    if ActiveRecord::Base.connection.adapter_name.downcase.include?("sqlite")
+      sql_subquery = <<~SQL
+        LOWER(name) LIKE :query OR
+        LOWER(distance) LIKE :query OR
+        LOWER(location) LIKE :query OR
+        LOWER(details) LIKE :query
+      SQL
+    else
+      sql_subquery = <<~SQL
+        name ILIKE :query OR
+        distance ILIKE :query OR
+        location ILIKE :query OR
+        details ILIKE :query
+      SQL
     end
+
+    planets = Planet.where(sql_subquery, query: term)
   end
+
+  @planets = planets
+end
 
   def show
     @booking = Booking.new
