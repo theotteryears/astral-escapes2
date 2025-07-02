@@ -11,9 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_05_02_213140) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -43,8 +40,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_02_213140) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.bigint "visitor_id", null: false
-    t.bigint "planet_id", null: false
+    t.integer "visitor_id", null: false
+    t.integer "planet_id", null: false
     t.date "start_date"
     t.date "end_date"
     t.string "status", default: "Unconfirmed"
@@ -59,7 +56,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_02_213140) do
     t.text "details"
     t.string "location"
     t.integer "price_per_night"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "planet_img"
@@ -72,7 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_02_213140) do
     t.integer "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "booking_id", null: false
+    t.integer "booking_id", null: false
     t.index ["booking_id"], name: "index_reviews_on_booking_id"
   end
 
